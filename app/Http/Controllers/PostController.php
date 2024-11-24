@@ -33,6 +33,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|string|max:255', 
+            'description' => 'required|string', 
+        ]);
         $post=Post::create($request->all());
         return redirect()->route('posts.create')->with('success', 'Post created successfully.');
     }
@@ -50,6 +54,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        
         return Inertia::render('Posts/Edit',[
             'post'=>$post
         ]);

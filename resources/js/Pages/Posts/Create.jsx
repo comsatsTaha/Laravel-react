@@ -55,6 +55,8 @@ export default function Create() {
                         className="mt-1 block w-full"
                         autoComplete="title"
                     />
+              <InputError message={errors.title} className="mt-2" />
+
                 
                 <InputLabel
                         htmlFor="description"
@@ -70,6 +72,7 @@ export default function Create() {
                         className="mt-1 block w-full"
                         autoComplete="description"
                     />
+                 <InputError message={errors.description} className="mt-2" />
 
                 <div className="flex items-center gap-4">
                     <PrimaryButton disabled={processing}>
