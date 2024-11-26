@@ -38,7 +38,7 @@ class PostController extends Controller
             'description' => 'required|string', 
         ]);
         $post=Post::create($request->all());
-        return redirect()->route('posts.create')->with('success', 'Post created successfully.');
+        // return redirect()->route('posts.create')->with('success', 'Post created successfully.');
     }
 
     /**
