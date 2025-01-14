@@ -8,12 +8,10 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Description, Transition } from '@headlessui/react';
 
 export default function Create() {
-
     const { data, setData, post, processing, errors, recentlySuccessful } = useForm({
-        title: '',
+        name: '',
         description: '',
     });
-    
 
     const handleInputChange = (field, value) => {
         setData((prevState) => ({
@@ -21,16 +19,18 @@ export default function Create() {
             [field]: value,
         }));
     };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route('posts.store'), {
-            preserveScroll: true, // Optional: keeps scroll position
+        post(route('employees.store'), {
+            preserveScroll: true,
             onSuccess: () => {
                 // Optional: reset form fields after successful submission
-          
+                setData({ name: '', description: '' });
             },
         });
     };
+
 
 
     return (
@@ -40,20 +40,20 @@ export default function Create() {
                 
 
                 <InputLabel
-                        htmlFor="title"
-                        value="Title"
+                        htmlFor="name"
+                        value="name"
                     />
                   <TextInput
-                        id="title"
-                        value={data.title}
+                        id="name"
+                        value={data.name}
                         onChange={(e) =>
-                            handleInputChange('title', e.target.value)
+                            handleInputChange('name', e.target.value)
                         }
                         type="text"
                         className="mt-1 block w-full"
-                        autoComplete="title"
+                        autoComplete="name"
                     />
-              <InputError message={errors.title} className="mt-2" />
+              <InputError message={errors.name} className="mt-2" />
 
                 
                 <InputLabel

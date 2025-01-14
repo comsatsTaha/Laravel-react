@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link, useForm } from '@inertiajs/react';
 
-export default function Index({ posts }) {
+export default function Index({ employees }) {
     const { delete: destroy, processing } = useForm();
 
     const handleDelete = (id) => {
         if (!confirm('Are you sure you want to delete this post?')) return;
 
-        destroy(route('posts.destroy', id), {
+        destroy(route('employees.destroy', id), {
             onSuccess: () => {
                 console.log(`Post ${id} deleted successfully`);
             },
@@ -22,7 +22,7 @@ export default function Index({ posts }) {
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold">Posts</h1>
                 <Link
-                    href={route('posts.create')}
+                    href={route('employees.create')}
                     className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                 >
                     New Post
@@ -38,20 +38,20 @@ export default function Index({ posts }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {posts.length > 0 ? (
-                        posts.map((post) => (
-                            <tr key={post.id}>
-                                <td className="border border-gray-300 px-4 py-2">{post.title}</td>
-                                <td className="border border-gray-300 px-4 py-2">{post.description}</td>
+                    {employees.length > 0 ? (
+                        employees.map((employee) => (
+                            <tr key={employee.id}>
+                                <td className="border border-gray-300 px-4 py-2">{employee.name}</td>
+                                <td className="border border-gray-300 px-4 py-2">{employee.description}</td>
                                 <td className="border border-gray-300 px-4 py-2">
                                     <Link
-                                        href={route('posts.edit', post.id)}
+                                        href={route('employees.edit', employee.id)}
                                         className="text-blue-500 hover:underline mr-4"
                                     >
                                         Edit
                                     </Link>
                                     <button
-                                        onClick={() => handleDelete(post.id)}
+                                        onClick={() => handleDelete(employee.id)}
                                         className={`text-red-500 hover:underline ${
                                             processing ? 'opacity-50 cursor-not-allowed' : ''
                                         }`}
@@ -68,7 +68,7 @@ export default function Index({ posts }) {
                                 colSpan="3"
                                 className="text-center border border-gray-300 px-4 py-2"
                             >
-                                No posts available.
+                                No employees available.
                             </td>
                         </tr>
                     )}

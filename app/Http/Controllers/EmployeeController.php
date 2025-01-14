@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+
 
 class EmployeeController extends Controller
 {
@@ -32,7 +34,12 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255', 
+            'description' => 'required|string', 
+        ]);
+        $employee=Employee::create($request->all());
+        // return redirect()->route('posts.create')->with('success', 'Post created successfully.');
     }
 
     /**
