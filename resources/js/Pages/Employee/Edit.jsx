@@ -37,7 +37,7 @@ export default function Edit({ employee }) {
 
     return (
         <AuthenticatedLayout>
-            <form onSubmit={handleSubmit} className="mt-6 space-y-6">
+            <form onSubmit={handleSubmit} className="m-10">
                 <InputLabel
                     htmlFor="name"
                     value="name"
@@ -70,7 +70,7 @@ export default function Edit({ employee }) {
                 />
                 <InputError message={errors.description} className="mt-2" />
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center mt-2">
                     <PrimaryButton disabled={processing}>
                         {processing ? 'Saving...' : 'Save Changes'}
                     </PrimaryButton>
