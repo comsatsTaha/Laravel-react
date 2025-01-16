@@ -14,7 +14,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees= Employee::all();
+        $employees= Employee::latest()->get();
         return Inertia::render('Employee/Index',[
             'employees' => $employees
         ]);
@@ -40,6 +40,7 @@ class EmployeeController extends Controller
         ]);
         $employee=Employee::create($request->all());
         // return redirect()->route('posts.create')->with('success', 'Post created successfully.');
+        return redirect()->route('employees.index');
     }
 
     /**
@@ -54,8 +55,10 @@ class EmployeeController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Employee $employee)
-    {
-        //
+    {         
+        return Inertia::render('Employee/Edit',[
+            'employee'=>$employee
+        ]);
     }
 
     /**
@@ -63,7 +66,8 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        $employee->update($request->only('name', 'description'));
+        return redirect()->route('employees.index')->with('success', 'Employee updated successfully');
     }
 
     /**
@@ -71,6 +75,7 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+        return redirect()->back();
     }
 }
